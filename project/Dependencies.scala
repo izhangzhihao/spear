@@ -3,23 +3,24 @@ import sbt._
 object Dependencies {
   val extraResolvers = Seq(
     Resolver.mavenLocal,
-    "Twitter Maven" at "http://maven.twttr.com"
+    "google" at "https://maven-central-asia.storage-download.googleapis.com/repos/central/data/",
+    "aliyun" at "http://maven.aliyun.com/nexus/content/groups/public/"
   )
 
   object Versions {
-    val ammonite = "1.0.0"
-    val config = "1.2.1"
-    val fastparse = "0.4.3"
+    val ammonite = "1.1.2"
+    val config = "1.3.3"
+    val fastparse = "1.0.0"
     val log4j = "1.2.17"
-    val mockito = "2.1.0-beta.120"
-    val scala = "2.11.11"
-    val scalaCheck = "1.12.5"
-    val scalaTest = "2.2.5"
-    val scalaXml = "1.0.4"
-    val scopt = "3.5.0"
-    val slf4j = "1.7.13"
+    val mockito = "2.21.0"
+    val scala = "2.12.6"
+    val scalaCheck = "1.14.0"
+    val scalaTest = "3.0.5"
+    val scalaXml = "1.1.0-newCollectionsBootstrap"
+    val scopt = "3.7.0"
+    val slf4j = "1.7.25"
 
-    val sourcecode = "0.1.3"
+    val sourcecode = "0.1.4"
   }
 
   val ammonite = Seq(

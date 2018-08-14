@@ -1,16 +1,16 @@
 package spear.generators
 
 import scala.collection.immutable.Stream.Empty
-
 import org.scalacheck.{Gen, Shrink}
 import org.scalacheck.Shrink.shrink
-
 import spear.config.Settings
 import spear.exceptions.TypeMismatchException
 import spear.expressions._
 import spear.generators.values._
 import spear.types.{BooleanType, FieldSpec, NumericType, PrimitiveType}
 import spear.utils.Logging
+
+import scala.util.Random
 
 package object expressions extends Logging {
   def genExpression(input: Seq[Expression], outputSpec: FieldSpec)(
@@ -266,7 +266,8 @@ package object expressions extends Logging {
       size <- Gen.size
       op <- Gen.oneOf(ops)
 
-      lhsSize = params.rng.nextInt(size - 1)
+      //lhsSize = params.rng.nextInt(size - 1)
+      lhsSize = Random.nextInt(size - 1)
       lhs <- Gen.resize(lhsSize, genBranch)
 
       rhsSize = size - 1 - lhsSize

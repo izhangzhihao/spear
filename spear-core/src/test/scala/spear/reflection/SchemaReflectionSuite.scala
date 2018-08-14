@@ -1,14 +1,15 @@
 package spear.reflection
 
-import scala.reflect.runtime.universe._
+import java.util.UUID
 
+import scala.reflect.runtime.universe._
 import spear.{LoggingFunSuite, TestUtils}
 import spear.reflection.SchemaReflectionSuite._
 import spear.types._
 
 class SchemaReflectionSuite extends LoggingFunSuite with TestUtils {
   private def testType[T: WeakTypeTag](kind: String)(expected: FieldSpec): Unit = {
-    val className = implicitly[WeakTypeTag[T]].tpe.toString
+    val className = implicitly[WeakTypeTag[T]].tpe.toString + " - " + UUID.randomUUID().toString.take(1)
     test(s"schema inference - $kind - $className") {
       checkTree(
         StructType('inferred -> expected),

@@ -82,7 +82,7 @@ lazy val commonSettings = {
     scalaVersion := Dependencies.Versions.scala,
     scalacOptions ++= Seq("-unchecked", "-deprecation", "-feature"),
     scalacOptions ++= Seq("-Ywarn-unused-import", "-Xlint"),
-    javacOptions ++= Seq("-source", "1.7", "-target", "1.7", "-g", "-Xlint:-options")
+    javacOptions ++= Seq("-source", "1.8", "-target", "1.8", "-g", "-Xlint:-options")
   )
 
   val commonTestSettings = Seq(
@@ -94,20 +94,20 @@ lazy val commonSettings = {
     testOptions in Test += Tests.Argument("-oDF")
   )
 
-  val commonDependencySettings = {
-    import net.virtualvoid.sbt.graph.Plugin.graphSettings
+  // val commonDependencySettings = {
+    // import net.virtualvoid.sbt.graph.Plugin.graphSettings
 
-    graphSettings ++ Seq(
+    // graphSettings ++ Seq(
       // Avoids copying managed dependencies into `lib_managed`
-      retrieveManaged := false,
+      // retrieveManaged := false,
       // Enables extra resolvers
-      resolvers ++= Dependencies.extraResolvers,
+      // resolvers ++= Dependencies.extraResolvers,
       // Disables auto conflict resolution
-      conflictManager := ConflictManager.strict,
+      // conflictManager := ConflictManager.strict,
       // Explicitly overrides all conflicting transitive dependencies
-      dependencyOverrides ++= Dependencies.overrides
-    )
-  }
+      // dependencyOverrides ++= Dependencies.overrides
+    // )
+  // }
 
   val scalariformPluginSettings = {
     import com.typesafe.sbt.SbtScalariform.scalariformSettings
@@ -121,15 +121,15 @@ lazy val commonSettings = {
 
   val taskSettings = Seq(
     // Runs scalastyle before compilation
-    compile in Compile := (compile in Compile dependsOn (scalastyle in Compile toTask "")).value,
+    //compile in Compile := (compile in Compile dependsOn (scalastyle in Compile toTask "")).value,
     // Runs scalastyle before running tests
-    test in Test := (test in Test dependsOn (scalastyle in Test toTask "")).value
+    //test in Test := (test in Test dependsOn (scalastyle in Test toTask "")).value
   )
 
   Seq(
     buildSettings,
     commonTestSettings,
-    commonDependencySettings,
+    //commonDependencySettings,
     scalariformPluginSettings,
     taskSettings
   ).flatten
